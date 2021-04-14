@@ -1,0 +1,39 @@
+$lt-font: #fff;
+$background-dark: #13b4d3;
+$background-light: #bbeaf0;
+$background-pale: #f2f0f5;
+$background-moredark: #14bcdc;
+
+@mixin zero-margin($pad-up-down, $pad-left-right) {
+    margin: 0px auto;
+    padding: $pad-up-down $pad-left-right;
+}
+
+.jumbotron {
+    @include zero-margin(30px,10px);
+    background: $background-light ;
+    color: #fff;
+    min-height: 20px;
+}
+.active {
+    background: $background-moredark;
+}
+mat-toolbar {
+    background-color: #6acfe0;
+}
+mat-toolbar img {
+    padding: 0px 5px 0px 0px;
+}
+.navigation-items{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+a {
+    text-decoration: none;
+    color: $lt-font;
+}
+
+a:hover, a:active {
+    color: $background-pale;
+}

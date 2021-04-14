@@ -1,0 +1,59 @@
+<div>
+    <mat-card>
+        <mat-card-header fxLayout="column" fxLayoutAlign="center center">
+            <mat-card-title>
+                <h2>Template-driven Forms</h2>
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <form novalidate #fform="ngForm" (ngSubmit)="onSubmit(fform)" *ngIf="showForm">
+                <div fxLayout="column" fxLayoutAlign="center center">
+
+                    <mat-form-field>
+                        <input matInput placeholder="Name" type="text" [(ngModel)]="feedback.name" name="name"
+                            #name="ngModel" minlength="2" maxlength="25" required>
+                        <mat-error *ngIf="name.invalid && name.errors.required">{{validationMessages.name.required}}
+                        </mat-error>
+                        <mat-error *ngIf="name.invalid && name.errors.minlength">{{validationMessages.name.minlength}}
+                        </mat-error>
+                        <mat-error *ngIf="name.invalid && name.errors.maxlength">{{validationMessages.name.maxlength}}
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-slider name="rating" [(ngModel)]="feedback.rating" thumbLabel tickInterval="1" min="1" max="5"
+                        step="1" value="5">
+                    </mat-slider>
+
+                    <mat-form-field>
+                        <textarea matInput placeholder="Your Feedback" [(ngModel)]="feedback.message" name="message"
+                            #message="ngModel" minlength="2" maxlength="100" rows=8 required></textarea>
+                        <mat-error *ngIf="message.invalid && message.errors.required">
+                            {{validationMessages.message.required}}
+                        </mat-error>
+                        <mat-error *ngIf="message.invalid && message.errors.minlength">
+                            {{validationMessages.message.minlength}}
+                        </mat-error>
+                        <mat-error *ngIf="message.invalid && message.errors.maxlength">
+                            {{validationMessages.message.maxlength}}
+                        </mat-error>
+                    </mat-form-field>
+
+                    <button type="submit" mat-stroked-button class="background-primary text-floral-white"
+                        [disabled]="fform.form.invalid">Submit</button>
+                </div>
+                <div class="full-width">
+                    <hr>
+                    <p>Form Value: {{ fform.value | json }}</p>
+                    <p>Form Status: {{ fform.status | json }}</p>
+                    <p>Form Touched: {{ fform.touched | json }}</p>
+                </div>
+            </form>
+            <div fxLayout="column" fxLayoutAlign="center center" *ngIf="submitted">
+                <h5>Your Submission</h5>
+                <p>Name: {{submitted.name}}</p>
+                <p>Rating: {{submitted.rating}}</p>
+                <p>Feedback: {{submitted.message}}</p>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

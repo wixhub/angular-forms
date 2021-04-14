@@ -1,0 +1,45 @@
+<div>
+    <mat-card>
+        <mat-card-header fxLayout="column" fxLayoutAlign="center center">
+            <mat-card-title>
+                <h2>Reactive/Model-driven Forms</h2>
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div fxLayout="column" fxLayoutAlign="center center">
+                <form novalidate [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onSubmit()" fxLayout="column"
+                    fxLayoutAlign="center center" *ngIf="showForm">
+
+                    <mat-form-field>
+                        <input matInput formControlName="name" placeholder="Name" type="text" required>
+                        <mat-error *ngIf="formErrors.name">{{formErrors.name}}</mat-error>
+                    </mat-form-field>
+
+                    <mat-slider formControlName="rating" thumbLabel tickInterval="1" min="1" max="5" step="1" value="5">
+                    </mat-slider>
+
+                    <mat-form-field>
+                        <textarea matInput formControlName="message" placeholder="Your Feedback" rows=8
+                            required></textarea>
+                        <mat-error *ngIf="formErrors.message">{{formErrors.message}}</mat-error>
+                    </mat-form-field>
+
+                    <button type="submit" mat-stroked-button class="background-primary text-floral-white"
+                        [disabled]="feedbackForm.invalid">Submit</button>
+                </form>
+            </div>
+            <div class="full-width" *ngIf="showForm">
+                <hr>
+                <p>Form Value: {{ feedbackForm.value | json }}</p>
+                <p>Form Status: {{ feedbackForm.status | json }}</p>
+                <p>Form Touched: {{ feedbackForm.touched | json }}</p>
+            </div>
+            <div fxLayout="column" fxLayoutAlign="center center" *ngIf="submitted">
+                <h5>Your Submission</h5>
+                <p>Name: {{submitted.name}}</p>
+                <p>Rating: {{submitted.rating}}</p>
+                <p>Feedback: {{submitted.message}}</p>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

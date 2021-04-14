@@ -1,0 +1,21 @@
+main {
+    padding: 10px;
+}
+
+#app{
+    position: relative;
+    width: 100%;
+}
+#wrap {
+    margin: 0 auto;
+    width: 50%;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+a:hover, a:active {
+    color: lightgray;
+}
